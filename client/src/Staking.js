@@ -238,7 +238,7 @@ state = {
                 {!this.state.isStaking ? <div>STEP 2/2: STAKE</div> : null}
                 {this.state.isStaking ? <div>STAKING...</div> : null}
             </div> : null}
-            <div className={`button withdraw-button ${this.state.nyanBalance > 0 || this.state.stakeAmount > 0 && this.state.stakeAmount <= this.state.stakedAmount ? "" : "disabled"}`} onClick={this.withdrawNyan}>
+            <div className={`button withdraw-button ${(this.state.nyanBalance > 0 || this.state.stakeAmount > 0) && (this.state.stakeAmount <= this.state.stakedAmount) ? "" : "disabled"}`} onClick={this.withdrawNyan}>
                 {!this.state.isWithdrawing ? <div>WITHDRAW</div> : null}
                 {this.state.isWithdrawing ? <div>WITHDRAWING...</div> : null}
             </div>

@@ -32,7 +32,7 @@ state = {
     if (this.state.stakeAmount > 0) {
       return this.state.stakeAmount;
     } else {
-      return null
+      return ''
     }
   }
 
@@ -85,9 +85,14 @@ state = {
     }
   }
 
+  setMaxStakingAmount() {
+      
+      this.setState({stakeAmount: this.state.dUniAmount});
+  }
+
   getDNyanUniStakeAmount = async () => {
     let stakeA = await this.darkNyanInstance.methods.getNipUniStakeAmount(this.accounts[0]).call();
-    console.log(stakeA);
+
     this.setState({stakedAmount: this.web3.utils.fromWei(stakeA)});
   }
 
@@ -209,7 +214,7 @@ state = {
             <h3>Create the bridge to the Polkadot network!</h3>
 
             <div>
-                <p>darkNYAN is an extension to the NYAN ecosystem that will allow NYAN voters to acquire non ERC20 assets.</p>
+                <p>darkNYAN is an extension to the NYAN.finance ecosystem that will allow NYAN voters to acquire non ERC20 assets.</p>
             </div>
             
             <div>
@@ -221,14 +226,14 @@ state = {
             </div>
 
             <div>
-              <p>Join the NIP/ETH pool on Uniswap, then stake your pool tokens here.</p>
+              <p><a className="as-link" rel="noopener noreferrer" href="https://app.uniswap.org/#/add/ETH/0xD2B93f66FD68c5572BFB8EBf45E2Bd7968B38113" target="_blank">Join the NIP/ETH pool on Uniswap</a>, then stake your pool tokens here.</p>
             </div>
             
             <div className="amount-staked-box">
               <div className="inline-block amount-staked-image">
-                <img className="balance-logo-image" src={catnipLogo}/>
+                <img className="balance-logo-image" alt="catnip logo" src={catnipLogo}/>
                 /
-                <img className="balance-logo-image" src={ethLogo}/>
+                <img className="balance-logo-image" alt="eth logo" src={ethLogo}/>
               </div>
               <div className="inline-block">
                 <div className="top-box-desc">Amount in Wallet</div>
@@ -242,24 +247,27 @@ state = {
 
             <div className="amount-staked-box">
               <div className="inline-block amount-staked-image">
-                <img className="reward-logo-image" src={dNyanLogo}/>
+                <img className="reward-logo-image" alt="dark nyan logo" src={dNyanLogo}/>
               </div>
               <div className="inline-block">
                 <div className="top-box-desc">darkNyan Rewards</div>
                 <div className="top-box-val nyan-balance">{this.state.darkNyanRewards}</div>
               </div>
             </div>
+            <div className="max-container">
+              <button className="as-link" onClick={this.setMaxStakingAmount.bind(this)}>Max amount</button>
+            </div>
           <div>
             <input 
-            className="input" 
-            placeholder="Type in the amount you want to stake or withdraw"
+            className="input-amount"
+            placeholder="Amount..."
             value={this.setInputField()} 
             onChange={this.updateStakingInput.bind(this)}
             type="number">
 
             </input>
-            </div>
-
+          </div>
+          <br />
             {!this.state.miningStarted ? <div className="button stake-button">
                 {!this.state.isStaking ? <div>MINING HAS NOT STARTED</div> : null}
             </div> : null}
@@ -267,15 +275,17 @@ state = {
                 {!this.state.isApproving ? <div>APPROVE</div> : null}
                 {this.state.isApproving ? <div>APPROVING...</div> : null}
             </div> : null}
-            {this.state.miningStarted && (this.state.darkNyanRewards > 0.001 || this.state.darkNyanRewards == null) ? <div className="button stake-button" onClick={this.getReward}>
+            {this.state.miningStarted && (this.state.darkNyanRewards > 0.001 || this.state.darkNyanRewards == null) ? <div className={`button stake-button ${this.state.darkNyanRewards > 0 ? "" : "disabled"}`} onClick={this.getReward}>
                 {!this.state.isClaiming ? <div>CLAIM REWARDS</div> : null}
                 {this.state.isClaiming ? <div>CLAIMING...</div> : null}
             </div> : null}
-            {this.state.isApproved && this.state.miningStarted && this.state.darkNyanRewards < 0.001 ? <div className="button stake-button" onClick={this.stakeDNyanUni}>
+
+            {this.state.isApproved && this.state.miningStarted && this.state.darkNyanRewards < 0.001 ? <div className={`button stake-button ${this.state.stakeAmount > 0 ? "" : "disabled"}`} onClick={this.stakeDNyanUni}>
                 {!this.state.isStaking ? <div>STEP 2: STAKE</div> : null}
                 {this.state.isStaking ? <div>STAKING...</div> : null}
             </div> : null}
-            {this.state.miningStarted ? <div className="button withdraw-button" onClick={this.withdrawNipUni}>
+            
+            {this.state.miningStarted ? <div className={`button withdraw-button ${this.state.stakeAmount > 0 ? "" : "disabled"}`} onClick={this.withdrawNipUni}>
                 {!this.state.isWithdrawing ? <div>WITHDRAW</div> : null}
                 {this.state.isWithdrawing ? <div>WITHDRAWING...</div> : null}
             </div> : null}
