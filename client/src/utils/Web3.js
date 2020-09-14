@@ -1,23 +1,18 @@
+/* Web3.js */
+/* Web3 helper functions */
 import Web3 from "web3";
 
-const getWeb3 = () =>
-  new Promise((resolve, reject) => {
-    // Wait for loading completion to avoid race conditions with web3 injection timing.
-    window.addEventListener("load", async () => {
-      // Modern dapp browsers...
-      if (window.ethereum) {
-        console.log('window.ethereum detected')
-        console.log(window.ethereum);
+async function getInstance() {
+    if (window.ethereum) {
         const web3 = new Web3(window.ethereum);
         try {
           // Request account access if needed
           await window.ethereum.enable();
           // Acccounts now exposed
-          console.log('accounts unlocked')
-          resolve(web3);
+          return web3;
         } catch (error) {
           console.log('an error occurred')
-          reject(error);
+          return null;
         }
       }
       // Legacy dapp browsers...
@@ -25,7 +20,7 @@ const getWeb3 = () =>
         // Use Mist/MetaMask's provider.
         const web3 = window.web3;
         console.log("Injected web3 detected.");
-        resolve(web3);
+        return web3;
       }
       // Fallback to localhost; use dev console port by default...
       else {
@@ -34,9 +29,25 @@ const getWeb3 = () =>
         );
         const web3 = new Web3(provider);
         console.log("No web3 instance injected, using Local web3.");
-        resolve(web3);
+        return web3;
       }
-    });
-  });
+ }
+ 
+ /** Get all accounts */
+ async function getAccounts(){
+    const instance = await getInstance();
+    return instance.eth.getAccounts();
+ }
 
-export default getWeb3;
+ async function getNetworkId(){
+    const instance = await getInstance();
+    return instance.eth.net.getId()
+ }
+ 
+ 
+ // Export each function
+ export {
+    getInstance,
+    getAccounts,
+    getNetworkId
+ };

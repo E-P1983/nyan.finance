@@ -14,12 +14,24 @@ Body {
 }
 
 .Logo {
+  font-family: "Silkscreen";
+  font-weight: 900;
   color: black;
   position: relative;
   display: inline-block;
-  width: 200px;
+  width: 20vw;
   text-align: left;
   font-size: 30px;
+}
+
+.ticker {
+  font-family: "Silkscreen";
+  font-size: 18px;
+  /*color: rgb(192,123,196);*/
+  color: black;
+  background-color: #f2f2f2;
+  width: 60vw;
+  text-align: right;
 }
 
 .top-box-desc {
@@ -90,6 +102,10 @@ Body {
   background-repeat: no-repeat;
 }
 
+.button.stake-button.disabled, .button.withdraw-button.disabled  {
+  background-color: #f2f2f2;
+}
+
 .Options-box {
   width: 100%;
   height: 70%;
@@ -98,7 +114,7 @@ Body {
 }
 
 .Option {
-  width: 240px;
+  width: 95%;
   height: 125px;
   /* background-color: gray; */
   -webkit-box-shadow: 0px 4px 18px 0px rgba(0,0,0,0.19);
@@ -107,7 +123,7 @@ Body {
   display: inline-block;
   cursor: pointer;
   transition: all .5s;
-  border-radius: 30px;
+  border-radius: 25px;
   background-color: white;
 }
 
@@ -119,14 +135,15 @@ Body {
   margin-left: 12px;
 }
 
-.Option h3 {
+.Option h4 {
+  font-family: Silkscreen;
   position: absolute;
-  bottom: -20px;
+  bottom: -1vh;
   left: 20px;
 }
 
 .Option:hover {
-  width: 265px;
+  width: 97%;
   height: 140px;
 }
 
@@ -137,12 +154,8 @@ Body {
   font-size: 30px;
   background-image: url("./assets/Nyan_stake.gif");
   background-position: center right;
-  background-size: 43%;
+  background-size: 30%;
   background-repeat: no-repeat;
-}
-
-.button.stake-button.disabled, .button.withdraw-button.disabled  {
-  background-color: #f2f2f2;
 }
 
 .pumped {
@@ -152,7 +165,7 @@ Body {
   font-size: 30px;
   background-image: url("./assets/Nyan_pump.gif");
   background-position:  bottom -10px right 0px;
-  background-size: 59%;
+  background-size: 45%;
   background-repeat: no-repeat;
 }
 
@@ -163,7 +176,18 @@ Body {
   font-size: 30px;
   background-image: url("./assets/Dark_Nyan.gif");
   background-position:  bottom -2px right 0px;
-  background-size: 43%;
+  background-size: 30%;
+  background-repeat: no-repeat;
+}
+
+.vote {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  font-size: 30px;
+  background-image: url("./assets/Nyan_vote.gif");
+  background-position:  bottom -2px right 0px;
+  background-size: 30%;
   background-repeat: no-repeat;
 }
 
@@ -179,6 +203,11 @@ Body {
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.Option.disabled-tile {
+  background-color: #f2f2f2;
+
 }
 
 .address {
@@ -198,12 +227,20 @@ Body {
   bottom: 100px;
 }
 
-.links-box {
+.dn {
+  bottom: 72px;
+}
+
+.footer {
   position: absolute;
-  bottom: 70px;
+  bottom: 10px;
   text-align: center;
   left: 0;
   right: 0;
+}
+
+.links-box {
+  margin-left: 5vh;
 }
 
 .links-box a {
@@ -226,13 +263,7 @@ Body {
 }
 
 .social-box {
-  width: 50%;
-  height: 50px;
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+  margin: 0 5vh 0 0;
   text-align: center;
 }
 
@@ -441,6 +472,7 @@ input[type=number]::-webkit-outer-spin-button {
 .clear {
   clear: both;
 }
+
 
 @media only screen and (max-width: 900px) {
   

@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/** FONTS **/
+@font-face {
+  font-family: 'Silkscreen';
+  src:url('./assets/fonts/Silkscreen.ttf.woff') format('woff'),
+      url('./assets/fonts/Silkscreen.ttf.svg#Silkscreen') format('svg'),
+      url('./assets/fonts/Silkscreen.ttf.eot'),
+      url('./assets/fonts/Silkscreen.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
