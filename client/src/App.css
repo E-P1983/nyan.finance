@@ -13,16 +13,33 @@ Body {
   height: 40vmin;
 }
 
-.Logo {
+.logo-container {
+  text-align: right;
+  position: relative;
+  display: block;
+  width: 90%;
+  text-align: left;
+  font-size: 30px;
+  height: 55px;
+}
+
+.logo-text {
   font-family: "Silkscreen";
   font-weight: 900;
   color: black;
   position: relative;
   display: inline-block;
   width: 20vw;
+  margin-left: 3px;
   text-align: left;
-  font-size: 30px;
+  font-size: 25px;
 }
+
+.logo-image {
+  height: 30px;
+}
+
+
 
 .ticker {
   font-family: "Silkscreen";
@@ -88,32 +105,22 @@ Body {
   margin-bottom: 1px;
 }
 
-.Nyan-cat {
-  /* background-color: gray; */
-  position: relative;
-  display: block;
-  width: 90%;
-  text-align: left;
-  font-size: 30px;
-  height: 150px;
-  background-image: url("./assets/nyan-small.gif");
-  background-position: left;
-  background-size: contain;
-  background-repeat: no-repeat;
+.Nyan-cat span {
+  text-align: right;
 }
 
 .button.stake-button.disabled, .button.withdraw-button.disabled  {
   background-color: #f2f2f2;
 }
 
-.Options-box {
+.Actions-box {
   width: 100%;
   height: 70%;
   text-align: center;
   margin-top: 3%;
 }
 
-.Option {
+.Box {
   width: 95%;
   height: 125px;
   /* background-color: gray; */
@@ -142,10 +149,12 @@ Body {
   left: 20px;
 }
 
+/*
 .Option:hover {
   width: 97%;
   height: 140px;
 }
+*/
 
 .stake {
   position: relative;
@@ -263,7 +272,7 @@ Body {
 }
 
 .social-box {
-  margin: 0 5vh 0 0;
+  margin: 0 5vh 1vh 0;
   text-align: center;
 }
 
@@ -386,7 +395,7 @@ Body {
 }
 
 button.as-link {
-  color: #ff95da;
+  color: #B3498E;
   background: none;
   border: none;
   font-size: 14px;
@@ -394,6 +403,13 @@ button.as-link {
   text-decoration: underline;
 }
 
+.pink-text {
+  color: #ff95da;
+}
+
+.darkpink-text {
+  color: #B3498E;
+}
 
 .amount-staked-box {
   background-color: #f2f2f2;
@@ -461,6 +477,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+/** Alignment **/
 .align-left {
   float: left;
 }
@@ -473,7 +490,192 @@ input[type=number]::-webkit-outer-spin-button {
   clear: both;
 }
 
+/** Link **/
+.link {
+  color: #ff95da;
+  font-weight: 700;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-decoration: none;
+}
 
+.title {
+  color: black;
+  font-weight: 700;
+  font-family: Silkscreen;
+  text-align: center;
+  font-size: 3em;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+  
+}
+
+.actionbox {
+  border: 0;
+  background-color: transparent;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,.19);
+  transition: all .5s;
+  border-radius: 30px;
+}
+
+.actionbox-logo-image {
+  height: 44px;
+  margin: 25px 0px 0px 15px;
+}
+
+.actionbox-logo-image.top {
+  height: 64px;
+  width: 64px;
+}
+
+.actionbox-footer {
+  background-color: transparent;
+}
+
+.actionbox-body {
+  text-align: left;
+}
+
+.actionbox-body .card-text{
+  margin-bottom: 0px;
+  font-size: .8em;
+}
+
+.actionbox-body .card-title {
+  font-family: SilkScreen;
+  font-size: 2em;
+  margin: 0;
+}
+
+.actionbox-body .actionbox-button {
+  margin-top: 5vh
+}
+
+.learn-more {
+  margin-top: 15vh;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+}
+
+.header {
+  height: 20vh;
+}
+
+.landing-button-right {
+  padding-left: 2px;
+}
+
+.landing-button-left {
+  padding-right: 2px;
+}
+
+.landing-button-right button, .landing-button-left button {
+  border-radius: 20px;
+  background-color: #CC62A7;
+  border: 1px solid #B3498E;
+}
+
+.pink-button {
+  border-radius: 20px;
+  background-color: #CC62A7;
+  border: 1px solid #B3498E;
+}
+
+.brown-button {
+  border-radius: 20px;
+  background-color: #8B4513;
+  border: 1px solid #722C00;
+}
+
+.router-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.router-link:hover{
+  color: inherit;
+  text-decoration: none;
+}
+
+.router-link:hover .card{
+  background-color: #fca3dc;
+}
+
+.subpage-header {
+  
+}
+
+.subpage-headder-image {
+  height: 48px;
+  margin: 0;
+  padding: 0;
+}
+
+.subpage-header-title {
+  font-family: "Silkscreen";
+  font-weight: 900;
+  color: black;
+  position: relative;
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  margin-left: 3px;
+  text-align: left;
+  font-size: 30px;
+}
+
+.subpage-header-subtext {
+  font-size: .9em;
+}
+
+.header-image img {
+  height: 64px;
+  margin-bottom: 2vh;
+}
+
+/**
+  * Hacks
+  */
+.modal-backdrop {
+    z-index: 100 !important;
+}
+.modal-content {
+    margin: 2px auto;
+    z-index: 110 !important;
+}
+
+.modal-box {
+  background-color: transparent;
+}
+
+.modal-box .modal-content {
+  border-radius: 25px;
+  box-shadow: 0px 4px 18px 0px rgba(0,0,0,0.19);
+}
+
+.modal-box-title {
+  font-family: Silkscreen;
+  font-size: 1em;
+}
+
+.modal-box .modal-header {
+  border-bottom: 0px;
+}
+
+
+/**
+  * Web3-Modal css hacks
+  */
+.web3modal-provider-name{
+  /** z-index: 10; **/
+  font-family: Silkscreen;
+}
+
+/**** Some optimizations for mobile **/
 @media only screen and (max-width: 900px) {
   
 

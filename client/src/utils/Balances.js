@@ -33,6 +33,11 @@ async function getMyStakedNipUniAmount(){
     return getStakedNipUniAmount(account);
 }
 
+async function getMyCatnipRewards(){
+    let account = await Accounts.getCurrentAccount();
+    return getCatNipRewards(account);
+}
+
 /**
  * Function to fetch the Nyan balance for a given account
  * @param {string} account 
@@ -83,6 +88,14 @@ async function getStakedNipUniAmount(account){
     return Formatter.getRoundedBalance(stakedDNyanBalance);
 }
 
+async function getCatNipRewards(account){
+    let instance = await Contracts.getCatnipContractInstance();
+    let catnipRewardsBalance = await instance.methods.myRewardsBalance(account).call();
+    return Formatter.getRoundedBalance(catnipRewardsBalance);
+}
+
+
+
  // Export each function
  export {
     getMyNyanBalance,
@@ -90,6 +103,8 @@ async function getStakedNipUniAmount(account){
     getMyDarkNyanBalance,
     getMyStakedNyanAmount,
     getMyStakedNipUniAmount,
+    getMyCatnipRewards,
+    getCatNipRewards,
     getNyanBalance,
     getCatnipBalance,
     getDarkNyanBalance,

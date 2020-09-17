@@ -1,16 +1,25 @@
 import React, { Component } from "react";
-
+import { 
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Staking from "./Staking";
-import Pump from "./Pump";
-import Mine from "./Mine";
+import Header from "./components/Header";
+import Routes from "./components/Routes";
+import Footer from "./components/Footer";
+
+//import Staking from "./Staking";
+//import Pump from "./Pump";
+//import Mine from "./Mine";
 
 import "./App.css";
 
 import nyanGif from './assets/nyan-small.gif';
 
-import { Web3, Contracts, Balances, Supply } from './utils';
+import { Web3, Balances, Supply } from './utils';
 
 class App extends Component {
   state = {
@@ -36,7 +45,7 @@ class App extends Component {
     tablet: 768,
     phone: 576,
   };*/
-
+  /*
   toggleStakingView = () => {
     this.setState({
       isViewingStaking: !this.state.isViewingStaking
@@ -59,11 +68,11 @@ class App extends Component {
   _getWeb3 = () => {
     return this.web3;
   }
-
+  */
 
   componentDidMount = async () => {
     document.title = "Nyan.finance";
-
+    /*
     this.web3 = await Web3.getInstance();
     
     // get accounts
@@ -82,6 +91,7 @@ class App extends Component {
       totalCatnipSupply: await Supply.getCatnipSupply(),
       totalDNyanSupply: await Supply.getDarkNyanSupply()
     })
+    */
   };
 
 
@@ -92,76 +102,13 @@ class App extends Component {
     return (
 
       <Container fluid>
-
-        <Row className="header">
-          <Col sm={8}> 
-            <div className="Logo">NYAN.FINANCE</div>
-            <div styles={{backgroundImage: `url(${nyanGif})`}} className="Nyan-cat"></div>
-          </Col>
-          <Col sm={4}>
-            <div className="ticker align-right">
-              Balances: <b>{this.state.nyanBalance}</b> NYAN - <b>{this.state.catnipBalance}</b> NIP - <b>{this.state.darkNyanBalance}</b> dNYAN
-              <br/>
-              Staked: <b>{this.state.stakedNyanAmount}</b> NYAN - <b>{this.state.stakedNipUniAmount}</b> NIP/ETH
-              <br/>
-              Supply: <b>{this.state.totalNyanSupply}</b> NYAN - <b>{this.state.totalCatnipSupply}</b> NIP - <b>{this.state.totalDNyanSupply}</b> DNyan
-            </div>
-          </Col>
-        </Row>
-
-        <br/><br/>
-        
-        <Row className="justify-content-center align-items-center">
-          <Col lg="auto"></Col>
-          <Col lg={3} className="text-center">
-            <div className="Option stake" onClick={this.toggleStakingView}>
-              <h4>STAKE NYAN</h4>
-            </div>
-          </Col>
-          <Col lg={3} className="text-center">
-            <div className="Option mine" onClick={this.toggleMineView}>
-              <h4>MINE NIP/ETH</h4>
-            </div>
-          </Col>
-          <Col lg={3} className="text-center">
-            <div className="Option pumped" onClick={this.togglePumpView}>
-              <h4>PUMP</h4>
-            </div>
-          </Col>
-          <Col lg="auto"></Col>
-        </Row>
+        <Router>
+          <Header/>
+          <Routes/>
+          <Footer/>
+        </Router>
 
         
-        <Row className="fixed-bottom">
-          <Col lg={4}>
-            <div className="links-box align-left">
-              <a href="https://etherscan.io/token/0xc9ce70a381910d0a90b30d408cc9c7705ee882de">NYAN Token Etherscan</a> . <a href="https://uniswap.info/pair/0x544cd63c9a3363dab66733bf8073cb981db58cba">NYAN-ETH Uniswap</a>
-            </div>
-          </Col>
-          <Col>{/*
-              NYAN address: <p className="addr-pink">0xc9ce70a381910d0a90b30d408cc9c7705ee882de</p>
-              CATNIP address: <p className="addr-pink">0xd2b93f66fd68c5572bfb8ebf45e2bd7968b38113</p>
-          DARK NYAN address: <p className="addr-pink">0x23b7f3a35bda036e3b59a945e441e041e6b11101</p>*/}
-          </Col>
-          <Col lg={3}>
-            <div className="social-box align-right">
-                <a target="_blank" rel="noopener noreferrer" href={"https://github.com/geass-zero/nyan.finance"}>
-                  <div className="social-icon git"></div>
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href={"https://www.twitter.com/nyanfinance"}>
-                  <div className="social-icon twit"></div>
-                </a> 
-                <a target="_blank" rel="noopener noreferrer" href={"https://t.me/nyanfinance"}>
-                  <div className="social-icon tele"></div>
-                </a>
-            </div>
-          </Col>
-        </Row>
-        
-        {this.state.isViewingStaking ? <Staking toggle={this.toggleStakingView} /> : null}
-        {this.state.isViewingPump ? <Pump toggle={this.togglePumpView} /> : null}
-        {this.state.isViewingMine ? <Mine toggle={this.toggleMineView} /> : null}
-
       </Container>
 
       /*

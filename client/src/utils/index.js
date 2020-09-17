@@ -9,6 +9,7 @@ import * as Formatter from './Formatter.js';
 import * as Balances from './Balances.js';
 import * as Supply from './Supply.js';
 import * as Accounts from './Accounts.js';
+import * as Claim from './Claim.js';
 
 // Export again
 export {
@@ -17,5 +18,6 @@ export {
     Formatter,
     Balances,
     Supply,
-    Accounts
+    Accounts,
+    Claim
 };

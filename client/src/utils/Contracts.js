@@ -39,6 +39,10 @@ async function getDarkNyanContractInstance(){
     return window.dNyanCI
 }
 
+async function checkApproval(){
+    
+}
+
  // Export each function
  export {
     getNyanContractInstance,
