@@ -5,13 +5,13 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
+import React, { useContext, useState, useEffect} from "react";
 //window.ethereum
 
-async function getInstance() {
-  if(window.web3Instance) return window.web3Instance;
-  
+
+
+  /*
   const providerOptions = {
-    /* See Provider Options Section */
     walletconnect: {
       package: WalletConnectProvider, // required
       options: {
@@ -19,8 +19,7 @@ async function getInstance() {
       }
     }
   };
-  
-  
+
   const web3Modal = new Web3Modal({
     network: "mainnet", // optional
     cacheProvider: true, // optional
@@ -34,10 +33,31 @@ async function getInstance() {
     }
   });
 
-  console.log(web3Modal)
+  if(!web3Modal) {
+    return false
+  }
+
+  
+
+  const web3 = new Web3(provider);
+  
+  /*window.web3Modal = web3Modal;
+  window.web3Instance = web3;
+  window.web3Provider = provider;*/
+  
+  //dispatch({ type: 'setWeb3Connected' })
+
+  //return ('<div/>')
+
+  /*
+  if(window.web3Instance) return window.web3Instance;
+  
+  
+  
+  
 
   if(!web3Modal) {
-    return false;
+    return false
   }
 
   let provider = false;
@@ -46,7 +66,7 @@ async function getInstance() {
   } catch (exception){
     console.log('exception thrown while instantiating web3modal');
     console.log(exception)
-    return false;
+    return false
   }
   
   // Subscribe to accounts change
@@ -70,10 +90,12 @@ async function getInstance() {
     });
 
   const web3 = new Web3(provider);
+  window.web3Modal = web3Modal;
   window.web3Instance = web3;
   window.web3Provider = provider;
   
   return web3;
+  
   /*
     if (window.ethereum) {
       console.log('window.ethereum')
@@ -111,34 +133,39 @@ async function getInstance() {
         
         return false;
       }
-      */
+      
  }
- 
+ */
+
  /**
   * Check to see if there's a web3 instance to use
   */
+ /*
  async function checkWeb3IsPresent(){
-   let instance = await getInstance();
+   let instance = await GetInstance();
    if(!instance) return false;
    return true;
 }
+*/
 
  /** Get all accounts */
+ /*
  async function getAccounts(){
-    const instance = await getInstance();
+    const instance = await GetInstance();
     return instance.eth.getAccounts();
     //return {};
  }
+ 
 
  async function getNetworkId(){
-    const instance = await getInstance();
+    const instance = await GetInstance();
     return instance.eth.net.getId()
  }
- 
+ */
+
  // Export each function
  export {
-    checkWeb3IsPresent,
-    getInstance,
-    getAccounts,
-    getNetworkId
+    //checkWeb3IsPresent,
+    //getAccounts,
+    //getNetworkId
  };

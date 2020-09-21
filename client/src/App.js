@@ -10,12 +10,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Header from "./components/Header";
 import Routes from "./components/Routes";
 import Footer from "./components/Footer";
+import Web3Wrapper from "./components/Web3Wrapper";
 
 //import Staking from "./Staking";
 //import Pump from "./Pump";
 //import Mine from "./Mine";
-
 import "./App.css";
+
 
 import nyanGif from './assets/nyan-small.gif';
 
@@ -100,17 +101,16 @@ class App extends Component {
     //   return <div>Loading Web3, accounts, and contract...</div>;
     // }
     return (
-
-      <Container fluid>
-        <Router>
-          <Header/>
-          <Routes/>
-          <Footer/>
-        </Router>
-
         
-      </Container>
-
+          <Container fluid>
+            <Router>
+              <Web3Wrapper>
+                <Header/>
+                <Routes/>
+                <Footer/>
+              </Web3Wrapper>
+            </Router>
+          </Container>
       /*
       <div className="App">
         <div className="header">
@@ -123,7 +123,7 @@ class App extends Component {
               <br/>
               Supply: <b>{this.state.totalNyanSupply}</b> NYAN - <b>{this.state.totalCatnipSupply}</b> NIP - <b>{this.state.totalDNyanSupply}</b> DNyan
             </div>
-          </div>
+          </div>f
           <div styles={{backgroundImage: `url(${nyanGif})`}} className="Nyan-cat"></div>
         </div>
         <div className="body"></div>

@@ -5,6 +5,7 @@ import nyanGif from '../assets/nyan-logo.png';
 import { Modal, Button, Row, Col, Container, Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Balances, Claim } from '../utils';
+import AmountField from './fields/Amount';
 
 import nyanLogo from '../assets/nyan-logo.png';
 import catnipLogo from '../assets/catnip.png';
@@ -14,6 +15,7 @@ export default class Stake extends Component {
     state = {
         nyanBalance: 0,
         stakedNyanAmount: 0,
+        unstakeAmount: 0,
         catnipRewards: 0,
         showUnstakeModal: false
     };
@@ -33,37 +35,10 @@ export default class Stake extends Component {
         })
     }
 
-    setMaxUnstakeInputField() {
-        if (this.state.unstakeAmount > 0) {
-          return this.state.unstakeAmount;
-        } else {
-          return '';
-        }
-    }
-
     setMaxUnstakeAmount = () => {
-        console.log()
         this.setState({unstakeAmount: this.state.stakedNyanAmount});
     }
 
-    /** setters & modifiers */
-    updateUnStakingInput(e) {
-        this.setState({unstakeAmount: e.target.value})
-        
-        if (this.state.unstakeAmount > this.state.allowance || this.state.nyanBalance){
-        // disable button
-        
-        } else {
-        // enable button
-        }
-        
-        /*
-        if (this.state.stakeAmount > this.state.allowance && !this.state.isApproved) {
-            this.setState({isApproved: false})
-        }
-        */
-    }
-    
     /**
      * Claim the rewards for this active account
      */
@@ -147,23 +122,11 @@ export default class Stake extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <Row className="justify-content-right text-right max-container">
-                        <Col><span class="darkpink-text">{this.state.stakedNyanAmount} NYAN available</span></Col>
+                        <Col><span className="darkpink-text">{this.state.stakedNyanAmount} NYAN available</span></Col>
                     </Row>
-                    <Row>
-                        <Col>
-                        <input 
-                            className="input-amount" 
-                            placeholder="Amount..."
-                            value={this.setMaxUnstakeInputField()} 
-                            onChange={this.updateUnStakingInput.bind(this)}
-                            type="number"
-                            autoFocus={true}>
-                        </input>
-                        </Col>
-                        <Col lg={2} className="align-items-center my-auto">
-                            <Button variant="primary pink-button" onClick={this.setMaxUnstakeAmount}>Max</Button>
-                        </Col>
-                    </Row>
+                    
+                    <AmountField maxAmount={this.state.stakedNyanAmount}></AmountField>
+                    
                 </Modal.Body>
                 <Modal.Footer className="justify-content-center align-items-center">
                     <Button variant="primary brown-button" onClick={this.handleCloseUnstakeModal}>
